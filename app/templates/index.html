@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Здания и сооружения</title>
+</head>
+<body>
+
+{% macro render_table(head, body) %}
+<table>
+    <thead>
+        <tr>
+            {% for col in head %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in body %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+<h1>Самые высокие здания и сооружения</h1>
+
+<nav>
+    <a href="#type-building">Типы зданий</a>
+    <a href="#structures">Здания и сооружения</a>
+    <a href="#stats-type">Статистика по типу</a>
+    <a href="#stats-country">Статистика по стране</a>
+    <a href="#stats-city">Статистика по городу</a>
+</nav>
+
+<section id="type-building">
+    <h2>Типы зданий</h2>
+    {{ render_table(type_buildings_head, type_buildings_body) }}
+</section>
+
+<section id="structures">
+    <h2>Здания и сооружения</h2>
+    {{ render_table(structures_head, structures_body) }}
+</section>
+
+<section id="stats-type">
+    <h2>Типы зданий</h2>
+    {{ render_table(stats_by_type_head, stats_by_type_body) }}
+</section>
+
+<section id="stats-country">
+    <h2>Страны</h2>
+    {{ render_table(stats_by_country_head, stats_by_country_body) }}
+</section>
+
+<section id="stats-city">
+    <h2>Города</h2>
+    {{ render_table(stats_by_city_head, stats_by_city_body) }}
+</section>
+
+</body>
+</html>
